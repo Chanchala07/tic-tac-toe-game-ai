@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: tic-tac
+    runtime: node
+    plan: free
+    buildCommand: npm --prefix client ci && npm --prefix client run build && npm --prefix backend ci
+    startCommand: npm --prefix backend start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /api/leaderboard
